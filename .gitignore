@@ -3,3 +3,7 @@ build/
 dist/
 *.spec
 *.exe
+config.json
+vocab.json
+speakers_xtts.pth
+model.pth
