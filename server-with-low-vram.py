@@ -24,10 +24,10 @@ except ImportError as e:
 from TTS.api import TTS
 from TTS.utils.generic_utils import ConsoleFormatter, setup_logger
 from TTS.utils.manage import ModelManager
-
+from TTS.tts.layers.xtts.tokenizer import VoiceBpeTokenizer
 logger = logging.getLogger(__name__)
 setup_logger("TTS", level=logging.INFO, stream=sys.stdout, formatter=ConsoleFormatter())
-
+xtts_text_cleaner = VoiceBpeTokenizer()
 
 def create_argparser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
@@ -220,6 +220,7 @@ def tts():
         logger.info("Model input: %s", text)
         logger.info("Speaker idx: %s", speaker_idx)
         logger.info("Language idx: %s", language_idx)
+
         try:
             api.synthesizer.seg = api.synthesizer._get_segmenter(language_idx)
         except Exception as e:
@@ -335,7 +336,8 @@ def openai_tts():
     fmt = fmt.lower()
     speed  = payload.get("speed", 1.0)
     language_idx = args.language_id if args.language_id else "en"
-    
+    # to do: add check for only using this if the model is xtts
+    text = xtts_text_cleaner.preprocess_text(text, language_idx)
     # here we ignore payload["model"] since its loaded at startup
 
     with lock:
