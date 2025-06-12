@@ -191,7 +191,31 @@ You’re now running! 🎉 Proceed to **WingmanAI Configuration**.
    * Use a `.wav` file (1 voice sample)
    * Or a folder of `.wav` files (multiple samples)
 
-9. Enter the path to the `.wav` or folder (use `/`, not `\`)
+9. For the Voice enter either the name of a built in voice or enter the path to the `.wav` or speaker folder (use `/`, not `\`)
+
+
+### 🎙️ Built-in Voices
+
+|                        |                   |                   |                    |
+| ---------------------- | ----------------- | ----------------- | ------------------ |
+| Claribel Dervla        | Dervla Studious   | Gracie Wise       | Tammie Ema         |
+| Alison Dietlinde       | Ana Florence      | Annmarie Nele     | Asya Anara         |
+| Brenda Stern           | Gitta Nikolina    | Henriette Usha    | Sofia Hellen       |
+| Tammy Grit             | Tanja Adelina     | Vjollca Johnnie   | Andrew Chipper     |
+| Badr Odhiambo          | Dionisio Schuyler | Royston Min       | Viktor Eka         |
+| Abrahan Mackdde Michal | Baldur Sanjin     | Craig Gutsy       | Damien Black       |
+| Gilberto Mathias       | Ilkin Urbano      | Kazuhiko Atallah  | Ludvig Milivoj     |
+| Suad Qasim             | Torcull Diarmuid  | Viktor Menelaos   | Zacharie Aimilios  |
+| Nova Hogarth           | Maja Ruoho        | Uta Obando        | Lidiya Szekeres    |
+| Chandra MacFarland     | Szofi Granger     | Camilla Holmström | Lilya Stainthorpe  |
+| Zofija Kendrick        | Narelle Moon      | Barbora MacLean   | Alexandra Hisakawa |
+| Alma María             | Rosemary Okafor   | Ige Behringer     | Filip Traverse     |
+| Damjan Chapman         | Wulf Carlevaro    | Aaron Dreschner   | Kumar Dahl         |
+| Eugenio Mataracı       | Ferran Simen      | Xavier Hayasaka   | Luis Moray         |
+| Marcos Rudaski         |                   |                   |                    |
+
+> ✅ With the server running, open [http://localhost:5002](http://localhost:5002) in your browser to try out all the voices in a demo UI.
+
 
 10. Save your Wingman
 
