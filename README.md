@@ -188,10 +188,10 @@ You’re now running! 🎉 Proceed to **WingmanAI Configuration**.
 
 8. Choose a **Voice** from the built-ins, or:
 
-   * Use a `.wav` file (1 voice sample)
-   * Or a folder of `.wav` files (multiple samples)
+   * Use a `.wav` file (1 voice sample) of the speaker whose voice you want to clone (recommended: 5-10 seconds, mono, 22050hz)
+   * Or a folder of `.wav` files (multiple samples) of the speaker whose voice you want to clone (recommended 3-6 samples, each 5-10 seconds, mono, 22050hz)
 
-9. For the Voice enter either the name of a built in voice or enter the path to the `.wav` or speaker folder (use `/`, not `\`)
+9. For the Voice enter either the **name** of a built in voice (see lost below) or enter the path to the `.wav` or speaker folder (use `/`, not `\`) you made above (recommend placing these in the **cloning_wavs** folder if using this repo or the exe or another similar folder if using the coqui-tts repo.
 
 
 ### 🎙️ Built-in Voices
