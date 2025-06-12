@@ -52,7 +52,7 @@ if "%language_id%"=="" (
 :: Prompt for hardware
 echo.
 set /p gpu_choice="Run with GPU or CPU? (type 'gpu' or 'cpu' and press enter): "
-set "args_common=--model_path xtts_model\main --config_path xtts_model\main\config.json --speakers_file_path xtts_model\main\speakers.json --language_id %language_id%"
+set "args_common=--model_path xtts_model\main --config_path xtts_model\main\config.json --speakers_file_path xtts_model\main\speakers.json --language_idx %language_id%"
 
 set "args="
 if /i "%gpu_choice%"=="gpu" (
