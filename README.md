@@ -219,4 +219,7 @@ You’re now running! 🎉 Proceed to **WingmanAI Configuration**.
 
 10. Save your Wingman
 
+![image](https://github.com/user-attachments/assets/0281852a-e474-4377-96ee-fb4881b040db)
+
+
 Your Wingman now speaks with **XTTS2**! 🗣️✨
