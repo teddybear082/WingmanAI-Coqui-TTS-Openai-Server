@@ -140,7 +140,7 @@ You’re now running! 🎉 Proceed to **WingmanAI Configuration**.
 
 **Installation Steps:**
 
-1. [Download this repo as ZIP](https://github.com/your-repo-url)
+1. [Download this repo as ZIP](https://github.com/teddybear082/WingmanAI-Coqui-TTS-Openai-Server/archive/refs/heads/main.zip)
 2. Unzip (avoid OneDrive folders)
 3. Install [`pyenv-win`](https://github.com/pyenv-win/pyenv-win)
 4. Open terminal in the unzipped folder
