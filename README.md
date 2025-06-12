@@ -65,7 +65,52 @@ You’re now running! 🎉 Proceed to **WingmanAI Configuration**.
 
 ---
 
-### 🐍 Option 2: Use `idiap/coqui-ai-TTS` Server with Python
+
+### 🛠️ Option 2: Use Custom Server from This Repo
+
+**Pros:**
+
+* Custom WingmanAI features (e.g., lowvram)
+* Open source
+* Cross-platform support
+
+**Cons:**
+
+* Not automatically synced with base repo
+* Requires more steps
+* Trust needed (or read the code)
+
+**Installation Steps:**
+
+1. [Download this repo as ZIP](https://github.com/teddybear082/WingmanAI-Coqui-TTS-Openai-Server/archive/refs/heads/main.zip)
+2. Unzip (avoid OneDrive folders)
+3. Install [`pyenv-win`](https://github.com/pyenv-win/pyenv-win)
+4. Open terminal in the unzipped folder
+5. Run:
+
+   ```bash
+   pyenv install 3.11.7
+   pyenv local 3.11.7
+   python -m venv venv
+   .\venv\Scripts\activate
+   pip install torch torchaudio  (if using cpu) or pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128  (if using Nvidia gpu)
+   pip install -r requirements.txt
+   ```
+6. Download XTTS2 model files from:
+   [huggingface.co/coqui/XTTS-v2](https://huggingface.co/coqui/XTTS-v2/tree/main)
+   into the `xtts_model` folder
+
+**To Run the Server:**
+
+1. Open the project folder
+2. Double-click `run_server_with_python.bat`
+3. Follow prompts to choose language and GPU/CPU
+
+You’re now running! 🎉 Proceed to **WingmanAI Configuration**.
+
+---
+
+### 🐍 Option 3: Use `idiap/coqui-ai-TTS` Server with Python
 
 **Pros:**
 
@@ -124,48 +169,6 @@ You’re now running! 🎉 Proceed to **WingmanAI Configuration**.
 
 ---
 
-### 🛠️ Option 3: Use Custom Server from This Repo
-
-**Pros:**
-
-* Custom WingmanAI features (e.g., lowvram)
-* Open source
-* Cross-platform support
-
-**Cons:**
-
-* Not automatically synced with base repo
-* Requires more steps
-* Trust needed (or read the code)
-
-**Installation Steps:**
-
-1. [Download this repo as ZIP](https://github.com/teddybear082/WingmanAI-Coqui-TTS-Openai-Server/archive/refs/heads/main.zip)
-2. Unzip (avoid OneDrive folders)
-3. Install [`pyenv-win`](https://github.com/pyenv-win/pyenv-win)
-4. Open terminal in the unzipped folder
-5. Run:
-
-   ```bash
-   pyenv install 3.11.7
-   pyenv local 3.11.7
-   python -m venv venv
-   .\venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
-6. Download XTTS2 model files from:
-   [huggingface.co/coqui/XTTS-v2](https://huggingface.co/coqui/XTTS-v2/tree/main)
-   into the `xtts_model` folder
-
-**To Run the Server:**
-
-1. Open the project folder
-2. Double-click `run_server_with_python.bat`
-3. Follow prompts to choose language and GPU/CPU
-
-You’re now running! 🎉 Proceed to **WingmanAI Configuration**.
-
----
 
 ## 🛠️ WingmanAI Configuration
 
