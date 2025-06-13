@@ -54,7 +54,7 @@ You have three installation options:
 
 **Installation Steps:**
 
-1. [Download ZIP (\~5GB)](https://mega.nz/file/1f8nQRTD#JfjgLrk2Ml1o3CkZj01Rj_Zk70RxaZ8nEdShGwZbI3Y)
+1. [Download ZIP (\~5GB)](https://mega.nz/file/IbFxybCa#mUPqdyQGuAFVJDzF5IdobrTmXW1rvdPNaVNtlUtsU4w)
 2. Unzip anywhere (avoid OneDrive-controlled folders)
 3. If warned, click “Keep Anyway”
 4. Double-click `run_server.bat`
