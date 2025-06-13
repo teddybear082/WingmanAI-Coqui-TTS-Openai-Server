@@ -31,8 +31,9 @@ The primary use case is integration with **[WingmanAI](https://github.com/ShipBi
 You have three installation options:
 
 1. ✅ Premade `.exe` for Windows (Experimental)
-2. ⚙️ Use original `idiap/coqui-ai-TTS` server with Python
-3. 🛠️ Use custom server from this repo with Python
+2. 🛠️ Use custom server from this repo with Python
+3. ⚙️ Use original `idiap/coqui-ai-TTS` server with Python
+
 
 ---
 
