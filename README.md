@@ -7,6 +7,9 @@
 This repo contains an OpenAI-compatible server for [Coqui-TTS](https://github.com/idiap/coqui-ai-TTS), adapted from
 [`TTS/server/server.py`](https://github.com/idiap/coqui-ai-TTS/blob/dev/TTS/server/server.py).
 
+[Watch the video showcase and tutorial on YouTube](https://www.youtube.com/watch?v=mobrmfkqWNI)
+
+
 ## What It Does
 
 This server allows you to use XTTS2 local TTS models as a drop-in replacement for OpenAI TTS models.
