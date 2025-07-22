@@ -58,7 +58,7 @@ You have three installation options:
 
 **Installation Steps:**
 
-1. [Download ZIP (\~5GB)](https://mega.nz/file/IbFxybCa#mUPqdyQGuAFVJDzF5IdobrTmXW1rvdPNaVNtlUtsU4w) (mega.nz download) or [here](https://www.mediafire.com/file_premium/ypv084u38x4omnn/Coqui-TTS-Openai-Server.zip/file) (mediafire download)
+1. [Download ZIP (\~5GB)](https://mega.nz/file/MedkHLZA#OxVzhxp-WklbyoTaPNOl_t931UDIXWrUsijmi_OZX0E) (mega.nz download) or [here](https://www.mediafire.com/file_premium/ypv084u38x4omnn/Coqui-TTS-Openai-Server.zip/file) (mediafire download)
 2. Unzip anywhere (avoid OneDrive-controlled folders)
 3. If warned, click “Keep Anyway”
 4. Double-click `run_server.bat`
