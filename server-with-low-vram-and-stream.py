@@ -385,8 +385,9 @@ def openai_tts():
             logger.info(f"Getting segmenter for language: {language_idx} failed, defaulting to English.  Reason: {e}.")
             api.synthesizer.seg = api.synthesizer._get_segmenter("en")
         stream = True # Force streaming for testing
-        # If streaming generate stream (for each chunk)
+        # If streaming, generate stream chunk-by-chunk for each sentence
         if stream:
+            gpt_cond_latent, speaker_embedding = (None, None)
             # if cloning wav provided, handle either single file or directory
             if speaker_wav:
                 if isinstance(speaker_wav, str):
@@ -400,7 +401,6 @@ def openai_tts():
                 )
             # if built in xtts2 voice, generate latents for voice
             else:
-                # built in voices -> latents, see https://gist.github.com/ichabodcole/1c0d19ef4c33b7b5705b0860c7c27f7b
                 speakers_dir = os.path.join(
                     Path(args.model_path), "speakers_xtts.pth"
                 )
@@ -408,29 +408,46 @@ def openai_tts():
                 speaker = list(speaker_data[speaker_idx].values())
                 gpt_cond_latent = speaker[0]
                 speaker_embedding = speaker[1]
-            waveform_iterator = api.synthesizer.tts_model.inference_stream(
-                text,
-                language_idx,
-                gpt_cond_latent=gpt_cond_latent,
-                speaker_embedding=speaker_embedding,
-                #temperature=temperature,
-                speed=speed,
-                stream_chunk_size=20,
-            )
+
+            # Split the input text into sentences
+            sentences = api.synthesizer.split_into_sentences(text)
+            logger.info(f"Split text into {len(sentences)} sentences for streaming.")
+
             def generate_chunks():
-                #for chunk in waveform_iterator:
-                    #yield chunk
-            #return Response(generate_chunks(), mimetype="audio/wav")
-                for chunk in waveform_iterator:
-                    sample_rate = 22050 # Assume sample rate for now
-                    if chunk.ndim == 1:
-                        chunk = chunk.unsqueeze(0)
-                    cpu_chunk = chunk.cpu()
-                    if fmt != "pcm":
-                        audio_buffer = _save_audio(cpu_chunk, sample_rate, {"format": fmt})
-                    else:
-                        audio_buffer = _save_pcm(cpu_chunk)
-                    yield audio_buffer.getvalue()
+                # Loop over each sentence
+                for i, sentence in enumerate(sentences):
+                    # Skip empty or whitespace-only sentences
+                    if not sentence.strip():
+                        continue
+                    
+                    logger.info(f"Streaming sentence {i+1}/{len(sentences)}: '{sentence}'")
+                    
+                    # Get the audio stream iterator for the current sentence
+                    waveform_iterator = api.synthesizer.tts_model.inference_stream(
+                        sentence,
+                        language_idx,
+                        gpt_cond_latent=gpt_cond_latent,
+                        speaker_embedding=speaker_embedding,
+                        speed=speed,
+                        stream_chunk_size=20, # Default XTTS stream chunk size
+                    )
+                    
+                    # Yield all audio chunks from this sentence's stream
+                    for chunk in waveform_iterator:
+                        # The chunk is a tensor, convert it to the desired format
+                        cpu_chunk = chunk.cpu()
+                        if fmt != "pcm":
+                            # This part might be slow for real-time streaming if not using PCM
+                            audio_buffer = _save_audio(cpu_chunk, api.synthesizer.output_sample_rate, {"format": fmt})
+                        else:
+                            audio_buffer = _save_pcm(cpu_chunk)
+                        
+                        yield audio_buffer.getvalue()
+                
+                # After all sentences, ensure VRAM is cleared if needed
+                if args.lowvram:
+                    handle_vram_change("cpu")
+
             return Response(generate_chunks(), mimetype=mimetype)
         
         # If not streaming, just generate on chunk with normal API
