@@ -73,7 +73,8 @@ def create_argparser() -> argparse.ArgumentParser:
         "--show_details", action=argparse.BooleanOptionalAction, default=False, help="Generate model detail page."
     )
     parser.add_argument("--language_idx", type=str, help="Default language ID for multilingual models.", default="en")
-    parser.add_argument("--lowvram", action=argparse.BooleanOptionalAction, default=False, help="true to use low vram mode, switches device to cpu when idle.")
+    parser.add_argument("--lowvram", action=argparse.BooleanOptionalAction, default=False, help="Use low vram mode, switches device to cpu when idle.")
+    parser.add_argument("--stream", action=argparse.BooleanOptionalAction, default=False, help="Use streaming mode. Only works with XTTS2.")
     return parser
 
 
@@ -332,7 +333,7 @@ def openai_tts():
     fmt = payload.get("response_format", "mp3").lower()  # OpenAI default is .mp3
     speed = payload.get("speed", 1.0)
     language_idx = args.language_idx if api.is_multi_lingual else None
-    stream = payload.get("stream", False)
+    stream = payload.get("stream") or args.stream or False
 
     speaker_wav = None
     if speaker_idx is not None:
@@ -384,7 +385,6 @@ def openai_tts():
         except Exception as e:
             logger.info(f"Getting segmenter for language: {language_idx} failed, defaulting to English.  Reason: {e}.")
             api.synthesizer.seg = api.synthesizer._get_segmenter("en")
-        stream = True # Force streaming for testing
         # If streaming, generate stream chunk-by-chunk for each sentence
         if stream:
             gpt_cond_latent, speaker_embedding = (None, None)
