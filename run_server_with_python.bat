@@ -52,7 +52,17 @@ if "%language_id%"=="" (
 :: Prompt for hardware
 echo.
 set /p gpu_choice="Run with GPU or CPU? (type 'gpu' or 'cpu' and press enter): "
-set "args_common=--model_path xtts_model\main --config_path xtts_model\main\config.json --speakers_file_path xtts_model\main\speakers.json --language_idx %language_id%"
+
+:: Prompt for streaming
+echo.
+set /p stream_choice="Enable streaming mode? (Y/N): "
+set "stream_flag="
+if /i "%stream_choice%"=="y" (
+    set "stream_flag=--stream"
+)
+
+:: Base arguments
+set "args_common=--model_path xtts_model\main --config_path xtts_model\main\config.json --speakers_file_path xtts_model\main\speakers.json --language_idx %language_id% !stream_flag!"
 
 set "args="
 if /i "%gpu_choice%"=="gpu" (
@@ -73,4 +83,4 @@ echo Access a test webpage by CTRL clicking this link after it loads: http://loc
 echo.
 
 :: Run the Python server
-python server-with-low-vram.py !args!
+python server-with-low-vram-and-stream.py !args!
