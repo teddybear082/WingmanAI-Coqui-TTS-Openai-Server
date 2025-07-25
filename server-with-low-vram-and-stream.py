@@ -436,6 +436,10 @@ def openai_tts():
                     for chunk in waveform_iterator:
                         # The chunk is a tensor, convert it to the desired format
                         cpu_chunk = chunk.cpu()
+                        
+                        if cpu_chunk.ndim == 1:
+                            cpu_chunk = cpu_chunk.unsqueeze(0)
+                            
                         if fmt != "pcm":
                             # This part might be slow for real-time streaming if not using PCM
                             audio_buffer = _save_audio(cpu_chunk, api.synthesizer.output_sample_rate, {"format": fmt})
